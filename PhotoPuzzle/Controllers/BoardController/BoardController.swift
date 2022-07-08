@@ -13,7 +13,7 @@ class BoardController: UICollectionViewController {
     
     var delegate: BoardControllerDelegate?
     
-    /// Wether all the board's tiles are in the correct location or not.
+    /// Whether all the tiles of the board are in the correct position or not.
     var isSolved: Bool {
         orderedImageTiles == shuffledImageTiles
     }
@@ -49,7 +49,7 @@ class BoardController: UICollectionViewController {
     
     /// Set the board's image.
     ///
-    /// When a new image is set, the tiles are updated with to depict it and shuffled.
+    /// When a new image is set, the tiles of the board are updated with its fragments and shuffled.
     func resetBoard(image: UIImage) {
         orderedImageTiles = image.splitForBoard()
         shuffledImageTiles = orderedImageTiles.shuffled()
