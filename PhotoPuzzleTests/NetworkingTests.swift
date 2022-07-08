@@ -104,7 +104,7 @@ class NetworkingTests: XCTestCase {
         } catch NetworkingError.badResponse(statusCode: let code) {
             XCTAssertEqual(code, 300)
         } catch {
-            XCTFail()
+            XCTFail("Wrong error thrown")
         }
     }
     

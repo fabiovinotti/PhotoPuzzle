@@ -14,7 +14,7 @@ class UIImageTests: XCTestCase {
         let thisBundle = Bundle(for: type(of: self))
         
         guard let img = UIImage(named: "test-photo.jpg", in: thisBundle, with: nil) else {
-            XCTFail("Failed to retrieve image to run test.")
+            XCTFail("Unable to retrieve the test image.")
             return
         }
         
