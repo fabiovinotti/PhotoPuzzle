@@ -123,8 +123,9 @@ extension BoardController: UICollectionViewDropDelegate {
     
     func collectionView(_ collectionView: UICollectionView, dropSessionDidUpdate session: UIDropSession, withDestinationIndexPath destinationIndexPath: IndexPath?) -> UICollectionViewDropProposal {
         
-        guard let destinationIndexPath = destinationIndexPath,
-              collectionView.hasActiveDrag
+        guard collectionView.hasActiveDrag,
+              session.items.count == 1,
+              let destinationIndexPath = destinationIndexPath
         else {
             return UICollectionViewDropProposal(operation: .cancel)
         }
