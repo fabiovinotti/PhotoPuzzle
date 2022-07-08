@@ -38,6 +38,16 @@ class NetworkingTests: XCTestCase {
     }
     
     func testFetchImage() async throws {
+        let thisBundle = Bundle(for: type(of: self))
+        
+        guard let originalImg = UIImage(named: "test-photo.jpg", in: thisBundle, compatibleWith: nil) else {
+            return XCTFail("Failed to retrieve image for testing.")
+        }
+        
+        guard let pngData = originalImg.pngData() else {
+            return XCTFail("Failed to generate PNG data.")
+        }
+        
         let response = HTTPURLResponse(
             url: imageURL,
             statusCode: 200,
@@ -45,11 +55,10 @@ class NetworkingTests: XCTestCase {
             headerFields: nil
         )
         
-        let data = try Data(contentsOf: imageURL)
+        MockURLProtocol.setParameters(data: pngData, response: response)
         
-        MockURLProtocol.setParameters(data: data, response: response)
-        
-        _ = try await Networking.fetchImage(from: imageURL, session: session)
+        let img = try await Networking.fetchImage(from: imageURL, session: session)
+        XCTAssertEqual(img.pngData(), pngData)
     }
     
     func testRequestFailedError() async {
