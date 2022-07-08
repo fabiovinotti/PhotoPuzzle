@@ -100,6 +100,7 @@ class NetworkingTests: XCTestCase {
         
         do {
             _ = try await Networking.fetchData(from: imageURL, session: session)
+            XCTFail("No error has been thrown")
         } catch NetworkingError.badResponse(statusCode: let code) {
             XCTAssertEqual(code, 300)
         } catch {
