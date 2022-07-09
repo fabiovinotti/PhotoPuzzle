@@ -15,7 +15,13 @@ class BoardController: UICollectionViewController {
     
     /// Whether all the tiles of the board are in the correct position or not.
     var isSolved: Bool {
-        orderedImageTiles == shuffledImageTiles
+        for i in 0..<shuffledImageTiles.count {
+            if shuffledImageTiles[i] !== orderedImageTiles[i] {
+                return false
+            }
+        }
+        
+        return true
     }
     
     let itemsPerRow: CGFloat = 3
@@ -58,7 +64,8 @@ class BoardController: UICollectionViewController {
     
     /// Checks if a tile is placed correctly or not.
     func checkTilePositionCorrectness(_ indexPath: IndexPath) -> Bool {
-        shuffledImageTiles[indexPath.item] == orderedImageTiles[indexPath.item]
+        let idx = indexPath.item
+        return shuffledImageTiles[idx] === orderedImageTiles[idx]
     }
 }
 
