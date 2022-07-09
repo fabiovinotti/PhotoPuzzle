@@ -14,8 +14,13 @@ class BoardController: UICollectionViewController {
     var delegate: BoardControllerDelegate?
     
     /// Whether all the tiles of the board are in the correct position or not.
+    ///
+    /// Returns false if no image was provided to the board.
     var isSolved: Bool {
-        for i in 0..<shuffledImageTiles.count {
+        let numberOfTiles = shuffledImageTiles.count
+        guard numberOfTiles > 0 else { return false }
+        
+        for i in 0..<numberOfTiles {
             if shuffledImageTiles[i] !== orderedImageTiles[i] {
                 return false
             }
