@@ -127,7 +127,7 @@ class GameViewController: UIViewController {
                 let screenSize = UIScreen.main.bounds.size
                 let imageDesiredSize = CGSize(width: screenSize.width, height: screenSize.height)
                 let scaledImage = image.scaledDown(to: imageDesiredSize)
-                boardController.resetBoard(image: scaledImage)
+                boardController.resetBoard(with: scaledImage)
                 numberOfMoves = 0
                 hideLoading()
             } catch let e as NetworkingError {

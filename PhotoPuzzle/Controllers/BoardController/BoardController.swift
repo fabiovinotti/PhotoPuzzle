@@ -50,7 +50,7 @@ class BoardController: UICollectionViewController {
     /// Set the board's image.
     ///
     /// When a new image is set, the tiles of the board are updated with its fragments and shuffled.
-    func resetBoard(image: UIImage) {
+    func resetBoard(with image: UIImage) {
         orderedImageTiles = image.splitForBoard()
         shuffledImageTiles = orderedImageTiles.shuffled()
         collectionView.reloadData()
